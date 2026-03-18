@@ -8,9 +8,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     const searchBox = document.querySelector(".search");
     const jobForm = document.getElementById("job-form")
     const jobOptions = document.getElementById("job-options")
+    const hasJobCheckbox = document.getElementById("hasJobCheckbox")
     const samoajaInfo = document.getElementById("samoajaInfo")
     const adultInfo = document.getElementById("adultInfo")
     let selectedJobs = [];
+    let hasJobCheckboxChecked = false
 
     let jobs = {};
     try {
@@ -100,6 +102,33 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     })
 
+    hasJobCheckbox.addEventListener("change", () => {
+        if (hasJobCheckbox.checked) {
+            hasJobCheckboxChecked = true
+            jobOptions.classList.add("hidden");
+            searchBox.classList.add("hidden")
+            optionsContainer.classList.add("hidden")
+            samoajaInfo.classList.add("hidden");
+            adultInfo.classList.add("hidden");
+        } else {
+            hasJobCheckboxChecked = false
+
+            const ageGroup = document.querySelector('input[name="agegroup"]:checked')?.value;
+            searchBox.classList.remove("hidden")
+            optionsContainer.classList.remove("hidden")
+
+            if (ageGroup === "samoaja") {
+                jobOptions.classList.remove("hidden");
+                samoajaInfo.classList.remove("hidden");
+                adultInfo.classList.add("hidden");
+            } else if (ageGroup === "vaeltaja" || ageGroup === "aikuinen") {
+                jobOptions.classList.add("hidden");
+                samoajaInfo.classList.add("hidden");
+                adultInfo.classList.remove("hidden");
+            }
+        }
+    });
+
     jobForm.addEventListener("submit", async (e) => {
         e.preventDefault();
 
@@ -111,15 +140,14 @@ document.addEventListener("DOMContentLoaded", async () => {
             return
         }
 
-        if (ageGroup === "samoaja" && jobTime === undefined) {
+        if (ageGroup === "samoaja" && jobTime === undefined && !hasJobCheckboxChecked) {
             alert("Muista täyttää kaikki lomakkeen pakolliset kohdat, jotka huomaat tähdistä *")
             return
         }
 
         const maxJobLength = getMaxJobSelectionLength(ageGroup)
 
-        console.log(ageGroup + maxJobLength)
-        if (selectedJobs.length < maxJobLength) {
+        if (selectedJobs.length < maxJobLength && !hasJobCheckboxChecked) {
             alert(`Et ole vielä valinnut ${maxJobLength} pestitoivetta. Valitse kymmenen pestitoivetta ja uudelleenpalauta lomake.`)
             return
         }
@@ -130,6 +158,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             ageGroup: ageGroup,
             jobTime: jobTime || "",
             selectedJobs: selectedJobs,
+            hasJobAlready: hasJobCheckboxChecked,
             details: document.getElementById("details").value
         };
 
@@ -139,6 +168,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             jobForm.reset();
             optionsContainer.innerHTML = "";
             selectedJobs = [];
+            hasJobCheckboxChecked = false
         } catch (error) {
             console.error("Error writing document: ", error);
             alert("Jotain meni pieleen, yritä uudelleen.");

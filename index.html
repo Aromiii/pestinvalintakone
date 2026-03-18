@@ -17,11 +17,11 @@
             <form class="radio-button-form">
                 <label>
                     Samoaja
-                    <input name="agegroup" type="radio" value="samoaja">
+                    <input name="agegroup" type="radio" value="samoaja">,
                 </label>
                 <label>
                     Vaeltaja
-                    <input name="agegroup" type="radio" value="vaeltaja">
+                    <input name="agegroup" type="radio" value="vaeltaja">,
                 </label>
                 <label>
                     Aikuinen
@@ -34,6 +34,10 @@
                 <h2>Sukunimi</h2>
                 <input id="lastName" placeholder="Sukunimi..." required>
                 <h2>Pestitoiveet</h2>
+                <label>
+                    Minulla on jo pesti:
+                    <input id="hasJobCheckbox" type="checkbox"/>
+                </label>
                 <p id="samoajaInfo" class="hidden">Valitse 10 mieluisinta pestitoivetta. Huomioi, että kyseessä on vain toiveet.</p>
                 <p id="adultInfo" class="hidden">Valitse 5 mieluisinta pestitoivetta. Huomioi, että kyseessä on vain toiveet.</p>
                 <input id="searchBox" class="search" placeholder="Hae vaihtoehtoja..." />
