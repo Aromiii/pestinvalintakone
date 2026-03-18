@@ -78,17 +78,23 @@ document.addEventListener("DOMContentLoaded", async () => {
             loadJobs(radio.value);
 
             if (radio.value === "vaeltaja" || radio.value === "aikuinen") {
-                jobOptions.classList.add("hidden")
-                samoajaInfo.classList.add("hidden")
-                adultInfo.classList.remove("hidden")
+                if (!hasJobCheckboxChecked) {
+                    jobOptions.classList.add("hidden")
+                    samoajaInfo.classList.add("hidden")
+                    adultInfo.classList.remove("hidden")
+                }
+
                 return
             }
 
             if (radio.value === "samoaja") {
-                jobOptions.classList.remove("hidden")
-                adultInfo.classList.add("hidden")
-                samoajaInfo.classList.remove("hidden")
-                return;
+                if (!hasJobCheckboxChecked) {
+                    jobOptions.classList.remove("hidden")
+                    adultInfo.classList.add("hidden")
+                    samoajaInfo.classList.remove("hidden")
+                }
+
+                return
             }
         });
     });
@@ -148,7 +154,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const maxJobLength = getMaxJobSelectionLength(ageGroup)
 
         if (selectedJobs.length < maxJobLength && !hasJobCheckboxChecked) {
-            alert(`Et ole vielä valinnut ${maxJobLength} pestitoivetta. Valitse kymmenen pestitoivetta ja uudelleenpalauta lomake.`)
+            alert(`Et ole vielä valinnut ${maxJobLength} pestitoivetta. Valitse ${maxJobLength} pestitoivetta ja uudelleenpalauta lomake.`)
             return
         }
 
