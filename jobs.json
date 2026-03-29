@@ -50,7 +50,14 @@
     "Erityisruokavaliokeittiön tekijä",
     "Vesikymppi",
     "Huollon tekijä",
-    "Logistiikan kuljettaja"
+    "Logistiikan kuljettaja",
+    "Somettaja",
+    "Kuvaaja",
+    "Datavastaava",
+    "Sähkökymppi, Ilves-leiri",
+    "Sähkökymppi, raksa ja purku",
+    "Sähkön tekijä",
+    "Varaston tekijä / hankintavastaava"
   ],
   "aikuinen": [
     "Haikin tekijä",
@@ -80,6 +87,13 @@
     "Erityisruokavaliokeittiön tekijä",
     "Vesikymppi",
     "Huollon tekijä",
-    "Logistiikan kuljettaja"
+    "Logistiikan kuljettaja",
+    "Somettaja",
+    "Kuvaaja",
+    "Datavastaava",
+    "Sähkökymppi, Ilves-leiri",
+    "Sähkökymppi, raksa ja purku",
+    "Sähkön tekijä",
+    "Varaston tekijä / hankintavastaava"
   ]
 }
