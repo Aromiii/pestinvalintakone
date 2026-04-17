@@ -1,1 +1,4 @@
 .idea
+dataExtractor/node_modules
+dataExtractor/package-lock.json
+dataExtractor/output.csv
